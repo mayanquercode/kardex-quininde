@@ -2,7 +2,6 @@ import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import AsideCategories from "../components/AsideCategories";
-import Header from "../components/Header";
 import ProductList from "../components/ProductList";
 
 export default function Home() {
@@ -14,10 +13,7 @@ export default function Home() {
         <Grid size={3} sx={{ height: "100%" }}>
           <AsideCategories selected={categoria} onSelect={setCategoria} />
         </Grid>
-        <Grid container direction="column" size={9} sx={{ height: "100vh", minHeight: 0 }}>
-        {/*<Grid sx={{ flex: 2 }}>
-            <Header categoria={categoria} />
-          </Grid>*/}
+        <Grid container size={9} sx={{ height: "100vh", minHeight: 0, flexDirection: "column" }}>
           <Grid sx={{ flex: 10, display: "flex", minHeight: 0 }}>
             <ProductList categoria={categoria} />
           </Grid>
