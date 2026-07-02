@@ -1,3 +1,4 @@
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
@@ -5,6 +6,7 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   base: "/kardex-quininde/",
   plugins: [
+    tailwindcss(),
     react(),
     VitePWA({
       registerType: "autoUpdate",
@@ -14,8 +16,8 @@ export default defineConfig({
         description: "Consulta de kardex de inventario",
         start_url: "/kardex-quininde/",
         display: "standalone",
-        background_color: "#16171D",
-        theme_color: "#1A2025",
+        background_color: "#f9fafb",
+        theme_color: "#f9fafb",
         icons: [
           {
             src: "/kardex-quininde/icon-192.png",

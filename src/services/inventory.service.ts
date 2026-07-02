@@ -3,6 +3,20 @@ import { stockRepository } from "../repositories/stock.repository"
 import type { ProductWithStock } from "../types/inventory"
 
 export const inventoryService = {
+  async getCategoriesWithProductCount(): Promise<{ category: string; count: number }[]> {
+    return productRepository.findCategoriesWithCount()
+  },
+
+  async getProductDetail(code: string): Promise<ProductWithStock | null> {
+    const product = await productRepository.findByCode(code)
+    if (!product) return null
+
+    const stockRecords = await stockRepository.findByCodes([code])
+    const stock = stockRecords.length > 0 ? stockRecords[0] : null
+
+    return { ...product, stock }
+  },
+
   async getProductsByCategory(
     category: string | null,
     search?: string,
