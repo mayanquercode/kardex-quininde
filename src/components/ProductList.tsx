@@ -12,6 +12,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useQueryKardexProduct } from "../hooks/use-inventory";
+import type { ProductWithStock } from "../types/inventory";
 
 interface ProductListProps {
   categoria: string | null;
@@ -87,13 +88,13 @@ export default function ProductList({ categoria }: ProductListProps) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((product: any) => (
+              {data.map((product: ProductWithStock) => (
                 <TableRow key={product.code} hover sx={{ "&:hover": { backgroundColor: "rgba(255,255,255,0.08)" } }}>
                   <TableCell sx={{ color: "white" }}>{product.code}</TableCell>
                   <TableCell sx={{ color: "white" }}>{product.name}</TableCell>
                   <TableCell sx={{ color: "white" }}>{product.product_type}</TableCell>
-                  <TableCell sx={{ color: "white" }}>{product.stock?.[0]?.system_quantity ?? "-"}</TableCell>
-                  <TableCell sx={{ color: "white" }}>{product.stock?.[0]?.physical_quantity ?? "-"}</TableCell>
+                  <TableCell sx={{ color: "white" }}>{product.stock?.system_quantity ?? "-"}</TableCell>
+                  <TableCell sx={{ color: "white" }}>{product.stock?.physical_quantity ?? "-"}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -110,7 +111,7 @@ export default function ProductList({ categoria }: ProductListProps) {
             gap: 1.5,
           }}
         >
-          {data.map((product: any) => (
+          {data.map((product: ProductWithStock) => (
             <Paper
               key={product.code}
               sx={{
@@ -133,10 +134,10 @@ export default function ProductList({ categoria }: ProductListProps) {
                   Tipo: {product.product_type}
                 </Typography>
                 <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.6)" }}>
-                  Sistema: {product.stock?.[0]?.system_quantity ?? "-"}
+                  Sistema: {product.stock?.system_quantity ?? "-"}
                 </Typography>
                 <Typography variant="caption" sx={{ color: "rgba(255,255,255,0.6)" }}>
-                  Físico: {product.stock?.[0]?.physical_quantity ?? "-"}
+                  Físico: {product.stock?.physical_quantity ?? "-"}
                 </Typography>
               </Box>
             </Paper>
